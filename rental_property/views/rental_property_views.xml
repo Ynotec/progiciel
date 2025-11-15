@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_rental_property_form" model="ir.ui.view">
+            <field name="name">rental.property.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <notebook position="inside">
+                    <page string="Rental Property" name="rental_property">
+                        <group string="Informations de bases">
+                            <field name="guest_capacity"/>
+                            <field name="number_of_bed"/>
+                            <field name="number_of_bedrooms"/>
+                            <field name="number_of_bathrooms"/>
+                        </group>
+
+                        <group string="Informations d'adresses">
+                            <field name="street"/>
+                            <field name="number_house"/>
+                            <field name="postal_code"/>
+                        </group>
+
+                        <group string="Equipements disponibles">
+                            <field name="climatization"/>
+                            <field name="terrace"/>
+                            <field name="garden"/>
+                            <field name="swimming_pool"/>
+                            <field name="jacuzzi"/>
+                            <field name="charge_ev"/>
+                            <field name="indoor_fireplace"/>
+                            <field name="outdoor_fireplace"/>
+                            <field name="dedicated_workspace"/>
+                            <field name="gym"/>
+                        </group>
+
+                        <group string="Accessibilité">
+                            <field name="toilet_grab_bar"/>
+                            <field name="shower_grab_bar"/>
+                            <field name="shower_free_access"/>
+                            <field name="shower_seat"/>
+                            <field name="bedroom_free_access"/>
+                            <field name="bedroom_large_door"/>
+                            <field name="general_free_access"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+    </data>
+</odoo>
