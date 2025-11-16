@@ -1,6 +1,7 @@
 # odooWeb
 
 Docker-compose : 
+`
 services:
   web:
     image: odoo:18.0
@@ -35,7 +36,7 @@ services:
       - "80:80"         
 volumes:
   odoo-db-data:
-
+`
 
   We use "Proxy" for request CORS, nginx.conf : 
   server {
