@@ -1,4 +1,7 @@
 # odooWeb
+Interface : 
+<img width="1026" height="1025" alt="image" src="https://github.com/user-attachments/assets/333f928a-1f7f-49e8-b3d6-627c2d792efc" />
+
 
 Docker-compose : 
 ```
