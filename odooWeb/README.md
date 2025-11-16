@@ -16,6 +16,7 @@ services:
       - HOST=mydb
       - USER=odoo
       - PASSWORD=myodoo
+      - ODOO_PROXY_MODE=true
     expose:
       - "8069"
   mydb:
@@ -44,32 +45,26 @@ volumes:
   We use "Proxy" for request CORS, nginx.conf : 
 
 ```
-  server {
+server {
     listen 80;
     server_name _;
 
-    location / {
-        if ($request_method = OPTIONS) {
-            add_header Access-Control-Allow-Origin $http_origin;
-            add_header Access-Control-Allow-Credentials true;
-            add_header Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS";
-            add_header Access-Control-Allow-Headers "Content-Type, X-Requested-With, Authorization, Origin, Accept";
-            add_header Access-Control-Max-Age 86400;
-            add_header Content-Length 0;
-            add_header Content-Type text/plain;
-            return 204;
-        }
+location / {
+    proxy_pass http://web:8069;
+    proxy_redirect off;
 
-        proxy_pass http://web:8069;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header Host                $host;
+    proxy_set_header X-Forwarded-Host    $host;
+    proxy_set_header X-Forwarded-Proto   $scheme;
+    proxy_set_header X-Forwarded-Port    $server_port;
+    proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
+    proxy_set_header X-Real-IP           $remote_addr;
 
-        add_header Access-Control-Allow-Origin $http_origin always;
-        add_header Access-Control-Allow-Credentials true always;
-        add_header Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS" always;
-        add_header Access-Control-Allow-Headers "Content-Type, X-Requested-With, Authorization, Origin, Accept" always;
-        add_header Vary Origin always;
-    }
+    add_header Access-Control-Allow-Origin      $http_origin always;
+    add_header Access-Control-Allow-Credentials true         always;
+    add_header Access-Control-Allow-Methods     "GET, POST, PUT, PATCH, DELETE, OPTIONS" always;
+    add_header Access-Control-Allow-Headers     "Content-Type, X-Requested-With, Authorization, Origin, Accept" always;
+    add_header Vary Origin always;
 }
-
+}
 ```
