@@ -62,11 +62,11 @@ export function createProductCard(product: Product): HTMLDivElement {
     const picture = product.image_1920 ?? null;
     const address = `${product.street} ${product.number_house}, ${product.postal_code}`;
 
-    const available = product.qty_available === 0 ? "Pas d'appartement disponible" : `Il y a ${product.qty_available} appartements disponible`
+    const available = product.qty_available === 0 ? "Déjà loué !" : `Il y a ${product.qty_available} appartements disponible`
 
     card.innerHTML = `
         <img src="data:image/png;base64, ${picture}" width="300"/>
-        <h3>${product.name ?? "L'appartement n'a pas de nom."}</h3>
+        <h3>${product.name ?? "Le bien n'a pas de nom."}</h3>
         <p><strong>Loyer :</strong> ${product.list_price.toFixed(2)} €</p>
         <p><strong>Adresse :</strong> ${address}</p>
         <p><strong> ${available} </p>
@@ -74,7 +74,7 @@ export function createProductCard(product: Product): HTMLDivElement {
 
     const rentButton = document.createElement('button');
     rentButton.type = 'button';
-    rentButton.textContent = 'Demande de location';
+    rentButton.textContent = product.qty_available ? 'Demande de location' : "S'inscrire à la liste d'attente";
     rentButton.className = 'btn-primary';
     rentButton.addEventListener('click', () => {
         openRentalModal(product);
