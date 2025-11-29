@@ -25,4 +25,3 @@ export interface JsonRpcResponse<T = unknown> {
         data?: { message?: string };
     };
 }
-

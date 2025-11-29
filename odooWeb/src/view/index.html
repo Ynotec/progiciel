@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogue Produit Odoo</title>
+    <link rel="stylesheet" href="./styles/styles.css">
+</head>
+<body>
+    <main class="app">
+        <header>
+            <h1>odooWeb</h1>
+        </header>
+
+        <section class="panel config-panel">
+            <div class="input-group">
+                <label for="urlOdoo">URL Odoo</label>
+                <input type="text" id="urlOdoo" placeholder="http://localhost:8069" value="http://127.0.0.1:80">
+            </div>
+            <div class="input-group">
+                <label for="dbOdoo">Base de données</label>
+                <input type="text" id="dbOdoo" placeholder="odoo" value="Progiciel">
+            </div>
+            <div class="input-group">
+                <label for="userOdoo">Utilisateur</label>
+                <input type="text" id="userOdoo" placeholder="admin" value="test">
+            </div>
+            <div class="input-group">
+                <label for="passwordOdoo">Mot de passe</label>
+                <input type="password" id="passwordOdoo" placeholder="test" value="admin">
+            </div>
+            <div class="actions">
+                <button id="getProducts" class="btn-primary">Charger les biens locatifs</button>
+            </div>
+        </section>
+
+        <section class="panel status-section">
+            <div id="areaLoading" class="status-card hidden">
+                <h3>Chargement</h3>
+                <p>Chargement des biens locatifs en cours...</p>
+            </div>
+            <div id="areaError" class="status-card hidden">
+                <h3>Erreur</h3>
+                <p>Aucune erreur.</p>
+            </div>
+            <div id="areaStats" class="status-card hidden">
+                <h3>Statistiques</h3>
+                <p>0 bien locatif chargé.</p>
+            </div>
+            <div id="areaOrder" class="status-card hidden">
+                <h3>Location</h3>
+                <p>Aucune demande de location en cours.</p>
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2 style="margin-top: 0;">Biens locatifs</h2>
+            <div id="gridProduct" class="hidden"></div>
+        </section>
+    </main>
+
+    <!-- Modal de demande de location -->
+    <div id="rentalModalOverlay" class="modal-overlay hidden">
+        <div class="modal">
+            <button class="close" id="modalClose" aria-label="Fermer">✕</button>
+            <h3>Demande de location</h3>
+            <p id="modalProductSummary"></p>
+            <div class="input-group">
+                <label for="modalCustomerName">Nom du client</label>
+                <input type="text" id="modalCustomerName" placeholder="John Doe" value="John Doe">
+            </div>
+            <div class="input-group">
+                <label for="modalCustomerEmail">Email du client</label>
+                <input type="email" id="modalCustomerEmail" placeholder="johndoe@email.com" value="johndoe@email.com">
+            </div>
+            <div class="input-group">
+                <label for="modalCustomerPhone">Téléphone du client</label>
+                <input type="tel" id="modalCustomerPhone" placeholder="+32 460 00 00" value="+32 460 00 00">
+            </div>
+            <div class="actions">
+                <button type="button" class="btn-secondary" id="modalCancel">Annuler</button>
+                <button type="button" class="btn-primary" id="modalConfirm">Confirmer la demande</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./main.ts"></script>
+</body>
+</html>

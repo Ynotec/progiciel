@@ -1,4 +1,4 @@
-import { loadProducts } from './services/productService.ts';
+import { loadProducts, setupRentalModalControls } from '../features/products/services';
 
 function registerEvents() {
     const loadButton = document.getElementById('getProducts');
@@ -11,6 +11,8 @@ function registerEvents() {
     loadButton.addEventListener('click', () => {
         void loadProducts();
     });
+
+    setupRentalModalControls();
 }
 
 if (document.readyState === 'loading') {

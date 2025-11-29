@@ -1,4 +1,4 @@
-import { JsonRpcPayload, JsonRpcResponse } from "../models/jsonModel.ts";
+import { JsonRpcPayload, JsonRpcResponse } from "../features/auth/models/model";
 
 
 export async function callOdoo<T = unknown>(

@@ -1,4 +1,4 @@
-import { JsonRpcResult } from "../models/jsonModel.ts";
+import { JsonRpcResult } from "./models/model";
 
 let sessionId: string | null = null;
 let uid: number | null = null;
