@@ -74,7 +74,7 @@ export function createProductCard(product: Product): HTMLDivElement {
 
     const rentButton = document.createElement('button');
     rentButton.type = 'button';
-    rentButton.textContent = 'Louer';
+    rentButton.textContent = 'Demande de location';
     rentButton.className = 'btn-primary';
     rentButton.addEventListener('click', () => {
         openRentalModal(product);
@@ -187,7 +187,7 @@ async function rentSelectedProduct(trigger?: HTMLButtonElement): Promise<void> {
 
     try {
         trigger?.setAttribute('disabled', 'true');
-        setOrderStatus('Création de la commande en cours...');
+        setOrderStatus('Création de la demande de location en cours...');
 
         const isAuthenticated = await authenticate();
         if (!isAuthenticated) {
